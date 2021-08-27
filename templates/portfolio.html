@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% load pg_extras_tag %}
+{% load static %}
+{% block menu %}
+{% include "menus.html" with active_tab='portfolio' %}
+{% endblock %}
+{% block content %}
+<!--=====================Content======================-->
+<section class="content cont_pad1">
+	<div class="container"><div class="ic">More Website Templates @ TemplateMonster.com - May 05, 2014!</div>
+		<div class="gallery gall__1">
+			<div class="row">
+			{% for cat_id, map_result in portfolio.port_info.items %}
+				<div class="grid_4">
+					<h3>{{ portfolio.cat_info|get_item:cat_id }}</h3>
+				</div>
+				<div class="clear"></div>
+				{% for port_id, port in map_result.items %}
+				<div class="grid_4">
+					<a href="{{ port.image.url }}" class="gal_item">
+						<img src="{{ port.image.url }}" alt="">
+						<div class="gal_caption">
+							<time datetime="2014-01-01">{% get_day_month_year port.created_date %}</time>
+						</div>
+						<span class="gal_magnify"></span>
+					</a>
+				</div>
+				{% endfor %}
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

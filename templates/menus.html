@@ -1,0 +1,7 @@
+<ul class="sf-menu">
+	<li class="{% if active_tab == 'home' %}current{% endif %}"><a href="{% url 'pg:home' %}">About</a></li>
+	<li class="{% if active_tab == 'portfolio' %}current{% endif %}"><a href="{% url 'pg:portfolio' %}">Portfolio</a></li>
+	<li class="{% if active_tab == 'resume' %}current{% endif %}"><a href="{% url 'pg:resume' %}">Resume</a></li>
+	<li class="{% if active_tab == 'blog' %}current{% endif %}"><a href="{% url 'pg:blog' %}">Blog</a></li>
+	<li class="{% if active_tab == 'contact' %}current{% endif %}"><a href="{% url 'pg:contact' %}">Contacts</a></li>
+</ul>

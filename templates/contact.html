@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+{% block menu %}
+{% include "menus.html" with active_tab='contact' %}
+{% endblock %}
+{% load pg_extras_tag %}
+{% block content %}
+<!--=====================Content======================-->
+<section class="content">
+	<div class="container"><div class="ic">More Website Templates @ TemplateMonster.com - May 05, 2014!</div>
+		<div class="row">
+			<div class="grid_12">
+				{% load_error_box err.success %}
+				<div class="map">
+					<figure>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24214.807650104907!2d-73.94846048422478!3d40.65521573400813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1395650655094" style="border:0"></iframe>
+					</figure>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_5">
+				<h3>Contact Info</h3>
+				<p>24/7 support is on for all <span class="color1"><a href="http://www.templatemonster.com/website-templates.php" rel="nofollow">premium designs</a></span> of TemplateMonster. Free templates go without it.</p>
+				<p>Need help in customization? Ask guys from <span class="color1"><a href="http://www.templatetuning.com/" rel="nofollow">TemplateTuning</a></span>.</p>
+				The Company Name Inc. <br>
+				9870 St Vincent Place,<br>
+				Glasgow, DC 45 Fr 45.<br>
+				Telephone: +1 800 603 6035<br>
+				FAX: +1 800 889 9898<br>
+				E-mail: <a href="#">mail@demolink.org</a>
+			</div>
+			<div class="grid_6 preffix_1">
+				<h3>Contact Form</h3>
+				<form id="form" method="POST" action="{% url 'pg:contact' %}">
+					{% csrf_token %}
+					<label class="name">
+						<input type="text" name="name" placeholder="Name:" data-constraints="@Required @JustLetters" value="{{ postdata.name }}" />
+						{% load_error_box err.name %}
+					</label>
+					<label class="email">
+						<input type="text" name="email" placeholder="E-mail:" data-constraints="@Required @Email" value="{{ postdata.email }}" />
+						{% load_error_box err.email %}
+					</label>
+					<label class="phone">
+						<input type="text" name="phone" placeholder="Phone:" data-constraints="@Required @JustNumbers" value="{{ postdata.phone }}" />
+						{% load_error_box err.phone %}
+					</label>
+					<label class="message">
+						<textarea name="message" placeholder="Message:" data-constraints='@Required @Length(min=20,max=999999)'>{{ postdata.message }}</textarea>
+						{% load_error_box err.message %}
+					</label>
+					<div>
+						<div class="clear"></div>
+						<div class="btns">
+							<a href="{% url 'pg:contact' %}" data-type="reset" class="btn bt__2">Clear</a>
+							<button data-type="submit" class="btn bt__2">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

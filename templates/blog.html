@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% load pg_extras_tag %}
+{% load static %}
+{% block menu %}
+{% include "menus.html" with active_tab='blog' %}
+{% endblock %}
+{% block content %}
+<!--=====================Content======================-->
+<section class="content">
+	<div class="container"><div class="ic">More Website Templates @ TemplateMonster.com - May 05, 2014!</div>
+		<div class="row">
+			<div class="grid_11">
+				{% for blogInfo in blog%}
+				<div class="blog">
+					<time datetime='2014-01-01'>{% get_date blogInfo.created_date %}<span>{% get_month blogInfo.created_date %}</span></time>
+					<img src="{{ blogInfo.image.url }}" alt="" class="img_inner fleft">
+					<div class="extra_wrapper">
+						<h3 class="blog_head color1"><a href="#">{{ blogInfo.title }}</a></h3>
+						{{ blogInfo.desc|safe }}
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
